@@ -1,0 +1,223 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 6,
+    "pending": 0,
+    "failures": 1,
+    "start": "2019-12-26T07:23:49.674Z",
+    "end": "2019-12-26T07:24:04.958Z",
+    "duration": 15284,
+    "testsRegistered": 7,
+    "passPercent": 85.71428571428571,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a2ced0bc-76fd-4459-ada0-851359c78b57",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+          "title": "Caffe Demos Main page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should have header equals to \"Caffe Demos\"",
+              "fullTitle": "Caffe Demos Main page should have header equals to \"Caffe Demos\"",
+              "timedOut": null,
+              "duration": 1315,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('h1 > a').should('have.text', \"Caffe Demos\");",
+              "err": {},
+              "uuid": "ffe7f200-a78b-44d4-beea-5ac8d936c7eb",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have page description text",
+              "fullTitle": "Caffe Demos Main page should have page description text",
+              "timedOut": null,
+              "duration": 438,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.page-header > p').contains(\"The Caffe neural network library makes implementing state-of-the-art computer vision systems easy.\");",
+              "err": {},
+              "uuid": "b4babb62-03b3-4630-8716-a86003c8b62d",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should navigate to \"Deep learning framework page\" ",
+              "fullTitle": "Caffe Demos Main page should navigate to \"Deep learning framework page\" ",
+              "timedOut": null,
+              "duration": 2720,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.page-header > p').contains('Caffe').click(); // cy.url().contains('http://caffe.berkeleyvision.org');\ncy.location().should(function (loc) {\n  expect(loc.origin).to.eq('http://caffe.berkeleyvision.org');\n});",
+              "err": {},
+              "uuid": "ffbf2e3a-c3bd-4ab7-aaf2-02b6f93f152c",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should open quick example",
+              "fullTitle": "Caffe Demos Main page should open quick example",
+              "timedOut": null,
+              "duration": 1982,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Click for a Quick Example').click();\ncy.get('div[class=\"media\"]').should('be.visible');\ncy.get('body > div.container > p').invoke('text').then(function (text) {\n  expect(text).to.match(/\\d+.\\d{3}/);\n});",
+              "err": {},
+              "uuid": "4cbaad4c-50a1-40af-9b85-9989a21dc3f4",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have identify a \"cat\"",
+              "fullTitle": "Caffe Demos Main page should have identify a \"cat\"",
+              "timedOut": null,
+              "duration": 1201,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Click for a Quick Example').click();\ncy.get('#myTab').contains('Maximally accurate').click();\ncy.get('#infopred h4').invoke('text').then(function (text) {\n  expect(text).to.contains(\"cat\");\n});\ncy.get('#myTab').contains('Maximally specific').click();\ncy.get('#flatpred h4').invoke('text').then(function (text) {\n  expect(text).to.contains(\"cat\");\n});",
+              "err": {},
+              "uuid": "0bf3c860-b6ca-4628-b91a-cd11026f068f",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should warning message for incorrecy URL",
+              "fullTitle": "Caffe Demos Main page should warning message for incorrecy URL",
+              "timedOut": null,
+              "duration": 693,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#classifyurl').click();\ncy.get('div.alert.alert-danger').should('be.visible');\ncy.get('div.alert.alert-danger').should('contain', \"Cannot open image from URL. Did you provide a valid URL or a valid image file? \");",
+              "err": {},
+              "uuid": "e95c921b-5b25-4e88-ab39-ec95ce117e52",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have identify an \"apple\"",
+              "fullTitle": "Caffe Demos Main page should have identify an \"apple\"",
+              "timedOut": null,
+              "duration": 3764,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#imageurl').type(\"https://vignette.wikia.nocookie.net/thefruitswiki/images/2/2b/Apple.jpg/revision/latest?cb=20190803231236\");\ncy.get('#classifyurl').click();\ncy.get('#myTab').contains('Maximally accurate').click();\ncy.get('#infopred h4').invoke('text').then(function (text) {\n  expect(text).to.contains(\"apple\");\n});\ncy.get('#myTab').contains('Maximally specific').click();\ncy.get('#flatpred h4').invoke('text').then(function (text) {\n  expect(text).to.contains(\"apple\");\n});",
+              "err": {
+                "message": "AssertionError: expected '\\n                    pomegranate\\n                  \\n                    edible fruit\\n                  \\n                    fruit\\n                  \\n                    reproductive structure\\n                  \\n                    plant organ\\n                  ' to include 'apple'",
+                "estack": "AssertionError: expected '\\n                    pomegranate\\n                  \\n                    edible fruit\\n                  \\n                    fruit\\n                  \\n                    reproductive structure\\n                  \\n                    plant organ\\n                  ' to include 'apple'\n    at getRet (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:89229:16)\n    at tryCatcher (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:140400:23)\n    at Function.Promise.attempt.Promise.try (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:137675:29)\n    at Context.thenFn (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:89243:23)\n    at Context.then (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:89610:21)\n    at Context.<anonymous> (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:101348:21)\n    at http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:100826:33\n    at tryCatcher (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:140400:23)\n    at Promise._settlePromiseFromHandler (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:138336:31)\n    at Promise._settlePromise (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:138393:18)\n    at Promise._settlePromiseCtx (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:138430:10)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueue (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:135130:12)\n    at Async../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:135135:10)\n    at Async.drainQueues (http://demo.caffe.berkeleyvision.org/__cypress/runner/cypress_runner.js:135009:14)",
+                "diff": null
+              },
+              "uuid": "7a2712ed-a578-4ba8-a2a7-bdb8aa02f514",
+              "parentUUID": "5aeb6c97-402f-4b08-b24c-a6f73bbb6673",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ffe7f200-a78b-44d4-beea-5ac8d936c7eb",
+            "b4babb62-03b3-4630-8716-a86003c8b62d",
+            "ffbf2e3a-c3bd-4ab7-aaf2-02b6f93f152c",
+            "4cbaad4c-50a1-40af-9b85-9989a21dc3f4",
+            "0bf3c860-b6ca-4628-b91a-cd11026f068f",
+            "e95c921b-5b25-4e88-ab39-ec95ce117e52"
+          ],
+          "failures": [
+            "7a2712ed-a578-4ba8-a2a7-bdb8aa02f514"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 12113,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "5.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/separate-reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}
