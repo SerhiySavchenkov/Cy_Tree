@@ -1,80 +1,76 @@
+import * as dataProvider from '../data/dataProvider';
+
+const HEADER = 'h1 > a';
+const PAGE_HEADER = '.page-header > p';
+const MEDIA_CONTAINER = 'div[class="media"]';
+const INFORMATION_MESSAGE = 'body > div.container > p'
+const TAB = '#myTab';
+const MAXIMALLY_ACCURATE_ROWS = '#infopred h4';
+const MAXIMALLY_SPECIFIC_ROWS = '#flatpred h4';
+const CLASSIFY_URL_BTN = '#classifyurl';
+const INPUT_FOR_IMAGE_URL= '#imageurl';
+const WARNING_ALERT = 'div.alert.alert-danger';
+
+
+
 describe('Caffe Demos Main page', () => {
 
     beforeEach(() => {
-      cy.visit('http://demo.caffe.berkeleyvision.org/');
+      cy.visit(dataProvider.links.caffe.caffeMainLink);
     })
 
     it('should have header equals to "Caffe Demos"', () => {
-      cy.get('h1 > a').should('have.text', "Caffe Demos");      
+      cy.get(HEADER).should('have.text', "Caffe Demos");      
     });
 
     it('should have page description text', () => {
-      cy.get('.page-header > p').contains("The Caffe neural network library makes implementing state-of-the-art computer vision systems easy.");
+      cy.get(PAGE_HEADER).contains("The Caffe neural network library makes implementing state-of-the-art computer vision systems easy.");
     });
 
     it('should navigate to "Deep learning framework page" ', () => {
-      cy.get('.page-header > p').contains('Caffe').click();
-      // cy.url().contains('http://caffe.berkeleyvision.org');
+      cy.get(PAGE_HEADER).contains('Caffe').click();
       cy.location().should((loc) => {
-        expect(loc.origin).to.eq('http://caffe.berkeleyvision.org')
+        expect(loc.origin).to.eq(dataProvider.links.caffe.caffeFrameworkOverviewLink)
       })
     });
 
     it('should open quick example', () => {
       cy.contains('Click for a Quick Example').click();
-      cy.get('div[class="media"]').should('be.visible');
-      cy.get('body > div.container > p').invoke('text').then((text) => {
+      cy.get(MEDIA_CONTAINER).should('be.visible');
+      cy.get(INFORMATION_MESSAGE).invoke('text').then((text) => {
         expect(text).to.match(/\d+.\d{3}/);
       });
     });
 
     it('should have identify a "cat"', () => {
       cy.contains('Click for a Quick Example').click();
-      cy.get('#myTab').contains('Maximally accurate').click();
-      cy.get('#infopred h4').invoke('text').then((text) => {
+      cy.get(TAB).contains('Maximally accurate').click();
+      cy.get(MAXIMALLY_ACCURATE_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("cat");
       })
-      cy.get('#myTab').contains('Maximally specific').click();
-      cy.get('#flatpred h4').invoke('text').then((text) => {
+      cy.get(TAB).contains('Maximally specific').click();
+      cy.get(MAXIMALLY_SPECIFIC_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("cat");
       })
     })
 
     it('should warning message for incorrecy URL', () => {
-      cy.get('#classifyurl').click();
-      cy.get('div.alert.alert-danger').should('be.visible');
-      cy.get('div.alert.alert-danger').should('contain', "Cannot open image from URL. Did you provide a valid URL or a valid image file? ");
+      cy.get(CLASSIFY_URL_BTN).click();
+      cy.get(WARNING_ALERT).should('be.visible');
+      cy.get(WARNING_ALERT).should('contain', "Cannot open image from URL. Did you provide a valid URL or a valid image file? ");
     })
 
     it('should have identify an "apple"', () => {
-      cy.get('#imageurl').type("https://vignette.wikia.nocookie.net/thefruitswiki/images/2/2b/Apple.jpg/revision/latest?cb=20190803231236");
-      cy.get('#classifyurl').click();
-      cy.get('#myTab').contains('Maximally accurate').click();
-      cy.get('#infopred h4').invoke('text').then((text) => {
+      cy.get(INPUT_FOR_IMAGE_URL).type(dataProvider.links.caffe.appleImageLink);
+      cy.get(CLASSIFY_URL_BTN).click();
+      cy.get(TAB).contains('Maximally accurate').click();
+      cy.get(MAXIMALLY_ACCURATE_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("apple");
       })
-      cy.get('#myTab').contains('Maximally specific').click();
-      cy.get('#flatpred h4').invoke('text').then((text) => {
+      cy.get(TAB).contains('Maximally specific').click();
+      cy.get(MAXIMALLY_SPECIFIC_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("apple");
       })
     })
 
-    
-
-
-
-    
-    //https://vignette.wikia.nocookie.net/thefruitswiki/images/2/2b/Apple.jpg/revision/latest?cb=20190803231236
-      //.should('match', '\d+.\d{3}');
-      //cy.url().should('match', /myregexp/)
-      //body > div.container > p
-
-      //expect(loc.search).to.eq('?q=dan')
-      //Fcross-eyed-cat_2351472k.jpg
-
-    // Quick Example
-
-
-    // p > a
-    // more tests
   });
