@@ -1,11 +1,15 @@
 {
     "ignoreTestFiles": "**/data/*.js",
     "viewportWidth": 1200,
-    "reporter": "./node_modules/mochawesome/src/mochawesome.js",
+    "reporter": "cypress-multi-reporters",
     "reporterOptions": {
-        "reportDir": "cypress/reports/separate-reports",
-        "overwrite": false,
-        "html": false,
-        "json": true
- }
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quite": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
 }
