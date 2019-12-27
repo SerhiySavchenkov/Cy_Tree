@@ -17,7 +17,7 @@ describe('Caffe Demos Main page', () => {
       cy.visit(dataProvider.links.caffe.caffeMainLink);
     })
 
-    it('should have header equals to "Caffe Demos"', () => {
+    it(`should have header equals to 'Caffe Demos'`, () => {
       cy.get(HEADER).should('have.text', "Caffe Demos");      
     });
 
@@ -25,7 +25,7 @@ describe('Caffe Demos Main page', () => {
       cy.get(PAGE_HEADER).contains("The Caffe neural network library makes implementing state-of-the-art computer vision systems easy.");
     });
 
-    it('should navigate to "Deep learning framework page" ', () => {
+    it(`should navigate to 'Deep learning framework page'`, () => {
       cy.get(PAGE_HEADER).contains('Caffe').click();
       cy.location().should((loc) => {
         expect(loc.origin).to.eq(dataProvider.links.caffe.caffeFrameworkOverviewLink)
@@ -55,7 +55,7 @@ describe('Caffe Demos Main page', () => {
       cy.get(WARNING_ALERT).should('contain', "Cannot open uploaded image. Did you provide a valid URL or a valid image file? ");
     })
 
-    it('should have identify a "cat"', () => {
+    it(`should identify a 'cat'`, () => {
       cy.contains('Click for a Quick Example').click();
       cy.get(TAB).contains('Maximally accurate').click();
       cy.get(MAXIMALLY_ACCURATE_ROWS).invoke('text').then((text) => {
@@ -67,7 +67,7 @@ describe('Caffe Demos Main page', () => {
       })
     })
 
-    it('should have identify an "apple"', () => {
+    it(`should identify an 'apple'`, () => {
       cy.get(INPUT_FOR_IMAGE_URL).type(dataProvider.links.caffe.appleImageLink);
       cy.get(CLASSIFY_URL_BTN).click();
       cy.get(TAB).contains('Maximally accurate').click();
@@ -81,7 +81,7 @@ describe('Caffe Demos Main page', () => {
     })
 
 
-    it('should have upload an image', () => {
+    it('should upload an image', () => {
       const fileName = '2UnitTests.png';
       cy.fixture(fileName).then(fileContent => {
         cy.get('#imagefile').upload({ fileContent, fileName, mimeType: 'application/png' });
