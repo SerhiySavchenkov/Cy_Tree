@@ -10,6 +10,7 @@
             "overwrite": false,
             "html": false,
             "json": true
-        }
+        },
+        "screenshotsFolder": "cypress/report/mochawesome-report/assets"
     }
 }

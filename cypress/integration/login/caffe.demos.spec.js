@@ -11,8 +11,6 @@ const CLASSIFY_URL_BTN = '#classifyurl';
 const INPUT_FOR_IMAGE_URL= '#imageurl';
 const WARNING_ALERT = 'div.alert.alert-danger';
 
-
-
 describe('Caffe Demos Main page', () => {
 
     beforeEach(() => {
@@ -42,6 +40,21 @@ describe('Caffe Demos Main page', () => {
       });
     });
 
+    it('should have warning message for incorrect URL', () => {
+      cy.get(CLASSIFY_URL_BTN).click();
+      cy.get(WARNING_ALERT).should('be.visible');
+      cy.get(WARNING_ALERT).should('contain', "Cannot open image from URL. Did you provide a valid URL or a valid image file? ");
+    })
+
+    it('should have warning message for incorrect upload image', () => {
+      const fileName = 'example.json';
+      cy.fixture(fileName).then(fileContent => {
+        cy.get('#imagefile').upload({ fileContent, fileName, mimeType: 'application/json' });
+      });
+      cy.get(WARNING_ALERT).should('be.visible');
+      cy.get(WARNING_ALERT).should('contain', "Cannot open uploaded image. Did you provide a valid URL or a valid image file? ");
+    })
+
     it('should have identify a "cat"', () => {
       cy.contains('Click for a Quick Example').click();
       cy.get(TAB).contains('Maximally accurate').click();
@@ -52,12 +65,6 @@ describe('Caffe Demos Main page', () => {
       cy.get(MAXIMALLY_SPECIFIC_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("cat");
       })
-    })
-
-    it('should warning message for incorrecy URL', () => {
-      cy.get(CLASSIFY_URL_BTN).click();
-      cy.get(WARNING_ALERT).should('be.visible');
-      cy.get(WARNING_ALERT).should('contain', "Cannot open image from URL. Did you provide a valid URL or a valid image file? ");
     })
 
     it('should have identify an "apple"', () => {
@@ -71,6 +78,19 @@ describe('Caffe Demos Main page', () => {
       cy.get(MAXIMALLY_SPECIFIC_ROWS).invoke('text').then((text) => {
         expect(text).to.contains("apple");
       })
+    })
+
+
+    it('should have upload an image', () => {
+      const fileName = '2UnitTests.png';
+      cy.fixture(fileName).then(fileContent => {
+        cy.get('#imagefile').upload({ fileContent, fileName, mimeType: 'application/png' });
+      });
+      cy.url().should('include', 'classify_upload');
+      cy.get(MEDIA_CONTAINER).should('be.visible');
+      cy.get(INFORMATION_MESSAGE).invoke('text').then((text) => {
+        expect(text).to.match(/\d+.\d{3}/);
+      });
     })
 
   });
