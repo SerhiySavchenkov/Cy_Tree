@@ -4,7 +4,7 @@ export const credentials = {
     username_incorrect: "admin1",
     password_incorrect: "admin1",
     username_correct: "SerhiyTest",
-    password_correct: "Eagle123!@#qwerty",
+    password_correct: "Eagle123!@#qwerty1",
 };
 
 export const links = {
